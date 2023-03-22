@@ -8,7 +8,16 @@ root.withdraw()
 filename = askopenfilename()
 
 # Leer el archivo seleccionado con Pandas
-df = pd.read_excel(filename)
+df = pd.read_excel(filename, parse_dates=True)
+
+sheets = pd.read_excel(filename, sheet_name=None)
+sheet_names = list(sheets.keys())
+df = pd.read_excel(filename, sheet_name=sheet_names[0], parse_dates=True)
+
+df = pd.read_excel(filename, parse_dates=True)
+
+# Este codigo muestra el los encabezados el dataframe
+print(df.columns)
 
 # Continuar con el resto del código tal y como lo tenías antes
 df2 = df[['Delivery', 'External HU']].dropna()
